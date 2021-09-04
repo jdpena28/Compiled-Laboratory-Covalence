@@ -1,0 +1,12 @@
+body {
+    background-color: whitesmoke
+}
+h1 {
+    color: tomato;
+}
+.friend {
+    background-color: wheat;
+}
+.friend > h3 {
+    text-transform: uppercase;
+}
