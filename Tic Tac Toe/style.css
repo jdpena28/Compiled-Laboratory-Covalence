@@ -37,3 +37,8 @@ h2 {
     line-height: 90px;
     background-color: #ff9526
 }
+.players-turn {
+    font-family: 'Source Code Pro',monospace;
+    font-size: 3.1rem;
+    text-align: center;
+}
