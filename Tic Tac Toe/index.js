@@ -1,20 +1,6 @@
 const cells = Array.from(document.getElementsByClassName('cell'))
-let board = [null,null,null,null,null,null,null,null,null]
-//To keep track all the input made by the players
-const winningCells = [
-    // all horizontal position winning entry
-    [cells[0],cells[1],cells[2]],
-    [cells[3],cells[4],cells[5]],
-    [cells[6],cells[7],cells[8]],
-    // all verticall winning entry
-    [cells[0],cells[3],cells[6]],
-    [cells[1],cells[4],cells[7]],
-    [cells[2],cells[5],cells[8]],
-    //all diagonal winning entry
-    [cells[0],cells[4],cells[8]],
-    [cells[2],cells[4],cells[6]],
-]
-let player = 'X' //let say 0 is X player and 1 is O player
+let textWinner = document.querySelector('#text-winner')
+let player = 'X' 
 let thereIsAWinner = false
 
 const cellClicked = () => {
@@ -25,18 +11,27 @@ const cellClicked = () => {
 
 function onGame (index) {
     indices = parseInt(index.target.id)
-    if (board[indices]===null && thereIsAWinner===false) {
+    if (thereIsAWinner===false && cells[indices].textContent==='') {
         if (player === 'X') {
             index.target.textContent = player;
-            board[indices] = 0
+            checkBoard(player)
             player = 'O'
         }
         else if (player==='O') {
             index.target.textContent = player;
-            board[indices] = 1
+            checkBoard(player)
             player = 'X'
         }
     }
+}
+function checkBoard (whosPlayer) {
+    if(cells[0].textContent===whosPlayer) {
+        if(cells[1].textContent===whosPlayer && cells[2].textContent===whosPlayer)
+        {
+            textWinner.textContent = `${whosPlayer} is the Winner`
+        }
+    }
+    
 }
 
 cellClicked()
