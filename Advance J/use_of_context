@@ -1,0 +1,50 @@
+/* EXAMPLE! */
+class Store {
+    constructor(products) {
+        // an array of objects this store will sell
+        this.products = products;
+        // an array of objects to track selected products
+        this.shoppingCart = [];
+        // a dom binding this class will make for checking out
+        this.checkoutBtn = $('<button>Checkout</button>').appendTo('body');
+
+        /* ---------------------------- */
+        /* here's where CONTEXT matters */
+        /* ---------------------------- */
+        
+        // ERROR EXAMPLE
+        this.checkoutBtn.click(function () {
+            // the CONTEXT of the keyword `this` becomes
+            // the '<button>Checkout</button>' rather than the class ..
+            // so this throws an error:
+            this.calculateTotal();
+        });
+
+        // FIX FOR ABOVE EXAMPLE
+        this.checkoutBtn.click(function () {
+            // the CONTEXT of the keyword `this` is bound to
+            // the class so it works!
+            this.calculateTotal();
+        }.bind(this)); 
+        // .bind(this) returns a copy of the function
+        // and it binds `this` from the button to the class instead
+
+        // FIX WITH ARROW FUNCTION
+        this.checkoutBtn.click(() => this.calculateTotal());
+        // arrows functions use the value of `this` in their lexical scope
+    }
+
+    addItemToCart(item) {
+        this.shoppingCart.push(item);
+    }
+
+    calculateTotal() {
+        // calculates the total cost of your shopping cart
+        let total = 0;
+        this.shoppingCart.forEach(product => {
+            total += product.cost;
+        });
+        // updates the app to show the calculated total
+        $('#total-div').text(total);
+    }
+}
