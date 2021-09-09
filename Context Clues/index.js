@@ -15,7 +15,6 @@ function createDOM(accusationNum) {
     h3Accusation.className = 'accusation'
     h3Accusation.innerHTML = `Accusation ${accusationNum}`
     document.body.appendChild(h3Accusation)
-    
     h3Accusation.addEventListener('click', () => {
         alert(`Accusation ${accusationNum}: I accuse ${randomNum(friendsName)}, with the ${randomNum(weapons)} in the ${randomNum(locations)}!`)
     })
