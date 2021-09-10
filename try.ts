@@ -27,7 +27,7 @@ const arr = removeFirstTwo(source);
 console.log(arr)
 
 console.log('-------------------------')
-
+//Destructuring for objects in JS
 const stats = {
   max: 56.78,
   standard_deviation: 4.34,
@@ -36,16 +36,26 @@ const stats = {
   min: -0.75,
   average: 35.85
 };
+// we going to tell inside the parameter which keys we are going to get
+// in the object stats
+const half = ({max,min}) => (max + min) / 2.0;
+console.log(half(stats))
 
-// Only change code below this line
-const half = (stats) => {
-    const {max,a,b,c,min}=stats
-    max + min / 2.0; 
+console.log('-------------------------')
+//Template Literals
+const result = {
+    success: ["max-length", "no-amd", "prefer-arrow-functions"],
+    failure: ["no-var", "var-on-top", "linebreak"],
+    skipped: ["no-extra-semi", "no-dup-keys"]
+  };
+  function makeList(arr) {
+    const failureItems = [];
+    for(let a = 0 ; a<result.failure.length;a++) {
+                        //here using template literals ${} to get a expression or function also can do
+        failureItems[a] = `<li class="text-warning">${result.failure[a]}</li>`
     }
-// Only change code above this line
-
-const profileUpdate = (profileData) => {
-    const { name, age, nationality, location } = profileData;
-    return profileData
+  
+    return failureItems;
   }
-
+  
+  const failuresList = makeList(result.failure);
